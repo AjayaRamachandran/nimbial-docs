@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import "./content.css";
 
@@ -20,16 +21,30 @@ const pages = {
   'nimbial' : [],
 };
 
-function Content({ page }) {
+function Content({ page, id }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [markdown, setMarkdown] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if (id) {
+      setSelectedFile(id);
+    }
+  }, []);
+
+  useEffect(() => {
+    let tempText = ''
     if (selectedFile) {
-      fetch(`/pages/page_${selectedFile}.md`)
+      fetch(`/pages/page_${page}_${selectedFile}.md`)
         .then((res) => res.text())
-        .then(setMarkdown)
-        .catch(() => setMarkdown("Error loading file."));
+        .then((text) => {
+          if (text.trim().startsWith('<')) {
+            setMarkdown("**Error:** Page not found.");
+          } else {
+            setMarkdown(text);
+          }
+        })
+        .catch(() => setMarkdown("**Error:** Page not found."));
     }
   }, [selectedFile]);
 
@@ -53,7 +68,7 @@ function Content({ page }) {
                       className={`item ${
                         selectedFile === fileId ? "active" : ""
                       }`}
-                      onClick={() => setSelectedFile(fileId)}
+                      onClick={() => {setSelectedFile(fileId); navigate(`/${page}/${fileId}/`)}}
                     >
                       {label}
                     </li>
