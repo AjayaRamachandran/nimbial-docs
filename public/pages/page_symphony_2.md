@@ -5,7 +5,7 @@ Go to [symphony.nimbial.com](https://symphony.nimbial.com) and navigate to the *
 
 Press **"Download Symphony for macOS 11+"**
 
-If the platform shown on the button does not match the system you are on, scroll down to **Releases**, and select the latest version for your system.
+> If the platform shown on the button does not match the system you are on, scroll down to **Releases**, and select the latest version for your system.
 
 A .zip file titled **Symphony-vX.X.X-macOS-installer.zip** should begin downloading.
 
@@ -22,7 +22,7 @@ On some mac computers, you may get a dialog box like the one below:
 
 ![file is damaged photo](https://www.dropbox.com/scl/fi/5us00l9f6dn80arahw3lg/macOSfileIsDamaged.png?rlkey=rcfiwnvqmio1aklrd43d2o7uw&st=8yhjfm8o&raw=1)
 
-**Do not click 'Move to Trash'.**
+> Do not click 'Move to Trash'.
 
 Instead, press cancel for now. Then, open **Terminal**.
 

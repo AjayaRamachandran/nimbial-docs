@@ -6,27 +6,76 @@
     font-weight: 700;
     box-sizing: border-box;
     justify-content: left;
-    font-style: italic;
     font-size: 1rem;
     gap: 5px;
     flex-direction: row;
     align-items: center;
     background-color: #1c1c1c;
+    background-color: #1f1f1fdd;
+    backdrop-filter: blur(30px);
     border-bottom: 1px solid #fff1;
 }
+
 .item {
-    margin: 0px;
-    padding: 5px 10px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: #aaa;
+  font-weight: 600;
+  transition: background 0.2s;
 }
 
-.hl {
-    font-weight: 700;
-    background-color: #fff1;
-    height: 100%;
+.item:hover {
+  background-color: #ffffff08;
+}
+
+.item.active {
+  background-color: #ffffff13;
+  font-weight: 600;
+  color: #eee;
+  outline: 1px solid #fff2;
 }
 
 .title {
-    font-weight: 500;
+    font-weight: 900;
     color: #f07715;
-    padding: 5px 10px;
+    padding: 10px 17px;
+}
+
+/* ===== NEW: Title hover transition ===== */
+
+.title-link {
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    padding: 10px 22px 10px 17px;
+    overflow: hidden;
+}
+
+.title-text {
+    display: block;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.title-text.default {
+    color: #f07715;
+}
+
+.title-text.hover {
+    position: absolute;
+    top: 10px;
+    left: 17px;
+    opacity: 0;
+    transform: translateY(5px);
+    color: #ffffff;
+}
+
+.title-link:hover .default {
+    opacity: 0;
+    transform: translateY(-5px);
+}
+
+.title-link:hover .hover {
+    opacity: 1;
+    transform: translateY(0);
 }

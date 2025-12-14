@@ -1,10 +1,11 @@
 .content-container {
   display: flex;
-  margin-top: 30px;
   height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden !important;
   width: 100%;
-  color: #e0e0e0;
-  font-family: "Inter", sans-serif;
+  color: #eee;
+  font-family: "Instrument Sans", sans-serif;
 }
 
 /* Sidebar */
@@ -12,7 +13,7 @@
   width: 250px;
   background-color: #1c1c1c;
   border-right: 1px solid #fff1;
-  padding: 20px;
+  padding: 60px 22px 20px 25px;
   overflow-y: auto;
 }
 
@@ -24,7 +25,7 @@
   font-size: 1.1rem;
   font-weight: 300;
   margin-bottom: 8px;
-  color: #fff;
+  color: #eee;
 }
 
 .section-items {
@@ -35,51 +36,48 @@
   margin: 0;
 }
 
-.item {
-  cursor: pointer;
-  padding: 4px 6px;
-  border-radius: 6px;
-  color: #aaa;
-  font-weight: 600;
-  transition: background 0.2s;
-}
-
-.item:hover {
-  background-color: #3a3a3a;
-}
-
-.item.active {
-  background-color: #2c2c2c;
-  font-weight: 600;
-  color: #ffffff;
-}
-
 /* Markdown viewer */
 .markdown-container {
   flex: 1;
-  background-color: #121212;
-  padding: 30px;
-  overflow-y: auto;
+  background-color: #141414;
+  padding: 90px 30px;
+  margin: 0;
+  overflow-y: scroll;
 }
 
 .markdown {
   max-width: 1000px;
   margin: 0 auto;
   line-height: 1.6;
-  color: #e0e0e0;
+  color: #ccc;
 }
 
 .markdown h1 {
-  font-size: 40px;
+  font-size: 32px;
 }
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  color: #eee;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.markdown h4 {
+  color: #eee;
+  margin-top: 20px;
+  margin-bottom: 1px;
+  padding-bottom: 0;
+  letter-spacing: 0.4px;
+}
+
 .markdown h1,
 .markdown h2,
 .markdown h3,
 .markdown h4 {
-  color: #ffffff;
-  margin-top: 24px;
-  margin-bottom: 12px;
+  scroll-margin-top: 63px;
 }
+
 
 .markdown p {
   margin: 12px 0;
@@ -94,11 +92,19 @@
   text-decoration: underline;
 }
 
+.markdown blockquote {
+  background-color: #ffc40011;
+  border: 1px solid #ffc40011;
+  color: #ffc400;
+  padding: 1px 15px;
+  border-radius: 4px;
+}
+
 .markdown code {
   background-color: #1e1e1e;
   padding: 2px 6px;
   border-radius: 4px;
-  font-family: monospace;
+  font-family: 'Google Sans Code', monospace;
 }
 
 .markdown pre {
@@ -109,9 +115,11 @@
 }
 
 .markdown img {
-  width: 500px;
   max-width: 100%;
-  border-radius: 5px;
+  max-height: 350px;
+  border-radius: 7px;
+  outline: 2px solid #fff1;
+  outline-offset: -2px;
 }
 
 .placeholder {

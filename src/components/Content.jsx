@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import {File} from 'lucide-react';
 import ReactMarkdown from "react-markdown";
 import "./content.css";
+import Outline from "./Outline.jsx";
 
 const pages = {
   'symphony' : [
@@ -29,6 +31,7 @@ function Content({ page, id }) {
   useEffect(() => {
     if (id) {
       setSelectedFile(id);
+      // console.log(id);
     }
   }, []);
 
@@ -66,10 +69,11 @@ function Content({ page, id }) {
                     <li
                       key={i}
                       className={`item ${
-                        selectedFile === fileId ? "active" : ""
+                        selectedFile == fileId ? "active" : ""
                       }`}
                       onClick={() => {setSelectedFile(fileId); navigate(`/${page}/${fileId}/`)}}
                     >
+                      <File size={12} strokeWidth={3} style={{marginRight: '7px', opacity: '0.3'}}/>
                       {label}
                     </li>
                   );
@@ -81,15 +85,49 @@ function Content({ page, id }) {
       </div>
 
       {/* Markdown content */}
-      <div className="markdown-container">
+      <div className="markdown-container scrollable">
         {selectedFile ? (
           <div className="markdown">
-            <ReactMarkdown>{markdown}</ReactMarkdown>
+            <ReactMarkdown
+              components={{
+                h1: ({ node, children }) => {
+                  const text = children;
+                  const id = String(text)
+                    .toLowerCase()
+                    .replace(/[^\w]+/g, "-");
+                  return <h1 id={id}>{children}</h1>;
+                },
+                h2: ({ node, children }) => {
+                  const text = children;
+                  const id = String(text)
+                    .toLowerCase()
+                    .replace(/[^\w]+/g, "-");
+                  return <h2 id={id}>{children}</h2>;
+                },
+                h3: ({ node, children }) => {
+                  const text = children;
+                  const id = String(text)
+                    .toLowerCase()
+                    .replace(/[^\w]+/g, "-");
+                  return <h3 id={id}>{children}</h3>;
+                },
+                h4: ({ node, children }) => {
+                  const text = children;
+                  const id = String(text)
+                    .toLowerCase()
+                    .replace(/[^\w]+/g, "-");
+                  return <h4 id={id}>{children}</h4>;
+                },
+              }}
+            >
+              {markdown}
+            </ReactMarkdown>
           </div>
         ) : (
           <div className="placeholder">Select an item to view its content.</div>
         )}
       </div>
+      <Outline markdown={markdown} />
     </div>
   );
 }

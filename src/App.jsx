@@ -11,6 +11,7 @@ function HomePageWrapper() {
 // Wrapper to extract param and pass into HomePage
 function HomePageWrapperFull() {
   const { page, id } = useParams();
+  console.log(page, id);
   return <HomePage page={page} id={id}/>;
 }
 

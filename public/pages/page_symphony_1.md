@@ -5,7 +5,7 @@ Go to [symphony.nimbial.com](https://symphony.nimbial.com) and navigate to the *
 
 Press **"Download Symphony for Windows 10/11"**
 
-If the platform shown on the button does not match the system you are on, scroll down to **Releases**, and select the latest version for your system.
+> If the platform shown on the button does not match the system you are on, scroll down to **Releases**, and select the latest version for your system.
 
 A .zip file titled **Symphony-vX.X.X-win64-installer.zip** should begin downloading.
 
