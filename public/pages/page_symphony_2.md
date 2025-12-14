@@ -13,11 +13,12 @@ Once the file has finished downloading, unzip the file, preferably in a temporar
 
 ![macOS Unzipped Folder](https://www.dropbox.com/scl/fi/lt9i0s8r4s0myb7ksc48l/macOSUnzippedFolder.png?rlkey=djkh4qr2lajagfilpmporws5k&st=yhvdbayz&raw=1)
 
+## Step 2 - Install
 Double-click **Symphony-0.0.0-arm64.dmg**. You should be prompted with a momentary setup wizard. If there are any instructions, follow them, then close the installer. (This should usually involve dragging the Symphony icon into the Applications folder)
 
 Symphony is now installed. You can find it as an app via **Spotlight** or in your App Launcher.
 
-## "File is damaged"
+## Troubleshooting: "File is damaged"
 On some mac computers, you may get a dialog box like the one below:
 
 ![file is damaged photo](https://www.dropbox.com/scl/fi/5us00l9f6dn80arahw3lg/macOSfileIsDamaged.png?rlkey=rcfiwnvqmio1aklrd43d2o7uw&st=8yhjfm8o&raw=1)

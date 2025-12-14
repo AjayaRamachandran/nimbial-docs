@@ -5,7 +5,6 @@ function slugify(text) {
   return text
     .toLowerCase()
     .replace(/[^\w]+/g, "-")
-    .replace(/^-+|-+$/g, "");
 }
 
 const Outline = ({ markdown }) => {
@@ -54,6 +53,8 @@ const Outline = ({ markdown }) => {
             className={`outline-item level-${h.level}`}
             onClick={() => {
               const el = document.getElementById(h.id);
+              console.log(h.id);
+              console.log(el);
               if (el) {
                 el.scrollIntoView({ behavior: "smooth", block: "start" });
               }

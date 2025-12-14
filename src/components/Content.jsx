@@ -118,6 +118,15 @@ function Content({ page, id }) {
                     .replace(/[^\w]+/g, "-");
                   return <h4 id={id}>{children}</h4>;
                 },
+                a: ({ href, children }) => (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {children}
+                  </a>
+              ),
               }}
             >
               {markdown}

@@ -14,6 +14,7 @@ Once the file has finished downloading, unzip the file, preferably in a temporar
 ![Windows Unzipped Folder](https://www.dropbox.com/scl/fi/7npc4dlh40pmlp8tm1p0k/WindowsUnzippedFolder.png?rlkey=hjislhr37iao7q7y2qmezawr6&st=x5txql1c&raw=1)
 
 
+## Step 2 - Install
 Double-click **Symphony Setup 0.0.0.exe**. You should be prompted with a momentary setup wizard. If there are any instructions, follow them, then close the installer.
 
 Symphony is now installed. You can find it as an app via **Search** or on your desktop.
