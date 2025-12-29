@@ -108,8 +108,7 @@ hr {
   border: none;
   border-top: 3px solid #ffffff1e;
   border-radius: 999px;
-  width: 1000px;
-  max-width: 80%;
+  margin: 40px 0;
   box-sizing: border-box;
   align-self: center;
 }

@@ -14,10 +14,15 @@ const pages = {
       ],
     },
     {
-      "Project Manager": [{ "Create Projects": 3 }],
+      "Project Manager": [
+        { "Create Projects": 3 },
+        { "Conversion Formats": 5 }
+      ],
     },
     {
-      "Editor": [{ "Keyboard Shortcuts": 4 }],
+      "Editor": [
+        { "Keyboard Shortcuts": 4 }
+      ],
     },
   ],
   'nimbial' : [],
