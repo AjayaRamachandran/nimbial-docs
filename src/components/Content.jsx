@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import {File} from 'lucide-react';
+import { useNavigate } from "react-router-dom";
+import { File, Menu } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import "./content.css";
 import Outline from "./Outline.jsx";
 
 const pages = {
-  'symphony' : [
+  symphony: [
     {
       "Downloading Symphony": [
         { "Download on Windows": 1 },
@@ -16,52 +16,52 @@ const pages = {
     {
       "Project Manager": [
         { "Create Projects": 3 },
-        { "Conversion Formats": 5 }
+        { "Conversion Formats": 5 },
       ],
     },
     {
-      "Editor": [
-        { "Keyboard Shortcuts": 4 }
-      ],
+      Editor: [{ "Keyboard Shortcuts": 4 }],
     },
   ],
-  'nimbial' : [],
+  nimbial: [],
 };
 
 function Content({ page, id }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [markdown, setMarkdown] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (id) {
-      setSelectedFile(id);
-      // console.log(id);
-    }
+    if (id) setSelectedFile(id);
   }, []);
 
   useEffect(() => {
-    let tempText = ''
-    if (selectedFile) {
-      fetch(`/pages/page_${page}_${selectedFile}.md`)
-        .then((res) => res.text())
-        .then((text) => {
-          if (text.trim().startsWith('<')) {
-            setMarkdown("**Error:** Page not found.");
-          } else {
-            setMarkdown(text);
-          }
-        })
-        .catch(() => setMarkdown("**Error:** Page not found."));
-    }
+    if (!selectedFile) return;
+
+    fetch(`/pages/page_${page}_${selectedFile}.md`)
+      .then((res) => res.text())
+      .then((text) => {
+        if (text.trim().startsWith("<")) {
+          setMarkdown("**Error:** Page not found.");
+        } else {
+          setMarkdown(text);
+        }
+      })
+      .catch(() => setMarkdown("**Error:** Page not found."));
   }, [selectedFile]);
 
   const sections = pages[page] || [];
 
   return (
     <div className="content-container">
+      {/* Hamburger */}
+      <div className="hamburger" onClick={() => setSidebarOpen(!sidebarOpen)}>
+        <Menu size={20} />
+      </div>
+
       {/* Sidebar */}
-      <div className="sidebar">
+      <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
         {sections.map((section, idx) => {
           const [sectionTitle, items] = Object.entries(section)[0];
           return (
@@ -76,9 +76,17 @@ function Content({ page, id }) {
                       className={`item ${
                         selectedFile == fileId ? "active" : ""
                       }`}
-                      onClick={() => {setSelectedFile(fileId); navigate(`/${page}/${fileId}/`)}}
+                      onClick={() => {
+                        setSelectedFile(fileId);
+                        setSidebarOpen(false);
+                        navigate(`/${page}/${fileId}/`);
+                      }}
                     >
-                      <File size={12} strokeWidth={3} style={{marginRight: '7px', opacity: '0.3'}}/>
+                      <File
+                        size={12}
+                        strokeWidth={3}
+                        style={{ marginRight: "7px", opacity: "0.3" }}
+                      />
                       {label}
                     </li>
                   );
@@ -89,58 +97,19 @@ function Content({ page, id }) {
         })}
       </div>
 
-      {/* Markdown content */}
-      <div className="markdown-container scrollable">
+      {/* Markdown */}
+      <div className="markdown-container">
         {selectedFile ? (
           <div className="markdown">
-            <ReactMarkdown
-              components={{
-                h1: ({ node, children }) => {
-                  const text = children;
-                  const id = String(text)
-                    .toLowerCase()
-                    .replace(/[^\w]+/g, "-");
-                  return <h1 id={id}>{children}</h1>;
-                },
-                h2: ({ node, children }) => {
-                  const text = children;
-                  const id = String(text)
-                    .toLowerCase()
-                    .replace(/[^\w]+/g, "-");
-                  return <h2 id={id}>{children}</h2>;
-                },
-                h3: ({ node, children }) => {
-                  const text = children;
-                  const id = String(text)
-                    .toLowerCase()
-                    .replace(/[^\w]+/g, "-");
-                  return <h3 id={id}>{children}</h3>;
-                },
-                h4: ({ node, children }) => {
-                  const text = children;
-                  const id = String(text)
-                    .toLowerCase()
-                    .replace(/[^\w]+/g, "-");
-                  return <h4 id={id}>{children}</h4>;
-                },
-                a: ({ href, children }) => (
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {children}
-                  </a>
-              ),
-              }}
-            >
-              {markdown}
-            </ReactMarkdown>
+            <ReactMarkdown>{markdown}</ReactMarkdown>
           </div>
         ) : (
-          <div className="placeholder">Select an item to view its content.</div>
+          <div className="placeholder">
+            Select an item to view its content.
+          </div>
         )}
       </div>
+
       <Outline markdown={markdown} />
     </div>
   );
