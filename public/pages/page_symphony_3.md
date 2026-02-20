@@ -1,3 +1,5 @@
+> This page was last updated for Symphony v1.0.2. We'll roll out an update soon.
+
 # Create Projects
 
 Here is a step-by-step walkthrough of how to create a project folder and a Symphony file inside of the Symphony Project Manager.

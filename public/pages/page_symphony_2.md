@@ -1,3 +1,5 @@
+> This page was last updated for Symphony v1.0.2. We'll roll out an update soon.
+
 # Get Symphony for macOS
 
 ## Step 1 - Download

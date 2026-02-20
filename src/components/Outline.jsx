@@ -1,46 +1,33 @@
 import React, { useEffect, useState } from "react";
 import "./outline.css";
 
-function slugify(text) {
-  return text
-    .toLowerCase()
-    .replace(/[^\w]+/g, "-")
-}
-
 const Outline = ({ markdown }) => {
   const [headings, setHeadings] = useState([]);
 
   useEffect(() => {
-    if (!markdown) return;
+    if (!markdown) {
+      setHeadings([]);
+      return;
+    }
 
-    const lines = markdown.split("\n");
-    const parsed = [];
+    const frameId = requestAnimationFrame(() => {
+      const nodes = document.querySelectorAll(
+        ".markdown h1, .markdown h2, .markdown h3, .markdown h4"
+      );
 
-    lines.forEach((line) => {
-      const match = line.match(/^(#{1,4})\s+(.*)/);
-      if (match) {
-        const level = match[1].length;
-        const text = match[2].trim();
-        const id = slugify(text);
-        parsed.push({ level, text, id });
-      }
+      const parsed = Array.from(nodes)
+        .map((node) => ({
+          level: Number(node.tagName.slice(1)),
+          text: node.textContent?.trim() || "",
+          id: node.id,
+        }))
+        .filter((heading) => heading.id);
+
+      setHeadings(parsed);
     });
 
-    setHeadings(parsed);
+    return () => cancelAnimationFrame(frameId);
   }, [markdown]);
-
-  useEffect(() => {
-    // Inject IDs into rendered headings
-    headings.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (!el) {
-        const candidate = document.querySelector(
-          `[data-heading-id="${id}"]`
-        );
-        if (candidate) candidate.id = id;
-      }
-    });
-  }, [headings]);
 
   if (!headings.length) return null;
 
@@ -53,8 +40,6 @@ const Outline = ({ markdown }) => {
             className={`outline-item level-${h.level}`}
             onClick={() => {
               const el = document.getElementById(h.id);
-              console.log(h.id);
-              console.log(el);
               if (el) {
                 el.scrollIntoView({ behavior: "smooth", block: "start" });
               }

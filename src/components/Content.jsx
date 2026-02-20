@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { File, Menu } from "lucide-react";
 import ReactMarkdown from "react-markdown";
@@ -26,15 +26,40 @@ const pages = {
   nimbial: [],
 };
 
+function slugify(text) {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-");
+}
+
+function getNodeText(node) {
+  if (typeof node === "string" || typeof node === "number") {
+    return String(node);
+  }
+
+  if (Array.isArray(node)) {
+    return node.map((child) => getNodeText(child)).join("");
+  }
+
+  if (React.isValidElement(node)) {
+    return getNodeText(node.props.children);
+  }
+
+  return "";
+}
+
 function Content({ page, id }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [markdown, setMarkdown] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const markdownContainerRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (id) setSelectedFile(id);
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (!selectedFile) return;
@@ -49,9 +74,35 @@ function Content({ page, id }) {
         }
       })
       .catch(() => setMarkdown("**Error:** Page not found."));
-  }, [selectedFile]);
+  }, [page, selectedFile]);
+
+  useEffect(() => {
+    if (!selectedFile || !markdownContainerRef.current) return;
+
+    markdownContainerRef.current.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
+  }, [page, selectedFile]);
 
   const sections = pages[page] || [];
+  const slugCounts = {};
+  const renderHeading = (level) => {
+    return ({ children, ...props }) => {
+      const text = getNodeText(children).trim();
+      const baseSlug = slugify(text) || `section-${level}`;
+      const count = (slugCounts[baseSlug] || 0) + 1;
+      slugCounts[baseSlug] = count;
+      const headingId = count === 1 ? baseSlug : `${baseSlug}-${count}`;
+      const Tag = `h${level}`;
+
+      return (
+        <Tag id={headingId} {...props}>
+          {children}
+        </Tag>
+      );
+    };
+  };
 
   return (
     <div className="content-container">
@@ -98,10 +149,19 @@ function Content({ page, id }) {
       </div>
 
       {/* Markdown */}
-      <div className="markdown-container">
+      <div className="markdown-container" ref={markdownContainerRef}>
         {selectedFile ? (
           <div className="markdown">
-            <ReactMarkdown>{markdown}</ReactMarkdown>
+            <ReactMarkdown
+              components={{
+                h1: renderHeading(1),
+                h2: renderHeading(2),
+                h3: renderHeading(3),
+                h4: renderHeading(4),
+              }}
+            >
+              {markdown}
+            </ReactMarkdown>
           </div>
         ) : (
           <div className="placeholder">

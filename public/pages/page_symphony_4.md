@@ -1,3 +1,5 @@
+> This page was last updated for Symphony v1.0.2. We'll roll out an update soon.
+
 # Keyboard Shortcuts
 
 Below is an exhaustive list of Keyboard shortcuts in the Symphony editor.
