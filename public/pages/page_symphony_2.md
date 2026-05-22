@@ -1,4 +1,4 @@
-> This page was last updated for Symphony v1.0.2. We'll roll out an update soon.
+> This document is intended for Symphony v1.0.2 (and older). Newer installers offer a one-click experience.
 
 # Get Symphony for macOS
 

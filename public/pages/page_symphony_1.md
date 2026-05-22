@@ -1,3 +1,5 @@
+> This document is intended for early snapshots of Symphony v1.1 (and older). Newer installers offer a one-click experience.
+
 # Get Symphony for Windows
 
 ## Step 1 - Download
