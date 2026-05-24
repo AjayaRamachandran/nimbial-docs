@@ -9,8 +9,8 @@ const pages = {
   symphony: [
     {
       "Downloading Symphony": [
-        { "Download on Windows": 1 },
-        { "Download on MacOS": 2 },
+        // { "Download on Windows": 1 },
+        { "MacOS: File is Damaged": 2 },
       ],
     },
     {
@@ -20,7 +20,7 @@ const pages = {
       ],
     },
     {
-      Editor: [{ "Keyboard Shortcuts": 4 }],
+      Editor: [{ "Symphony Help": 4 }],
     },
   ],
   nimbial: [],
@@ -61,6 +61,10 @@ function Content({ page, id }) {
     if (id) setSelectedFile(id);
   }, [id]);
 
+  function stripMarkdownComments(text) {
+    return text.replace(/<!--([\s\S]*?)-->/g, "");
+  }
+
   useEffect(() => {
     if (!selectedFile) return;
 
@@ -70,7 +74,7 @@ function Content({ page, id }) {
         if (text.trim().startsWith("<")) {
           setMarkdown("**Error:** Page not found.");
         } else {
-          setMarkdown(text);
+          setMarkdown(stripMarkdownComments(text));
         }
       })
       .catch(() => setMarkdown("**Error:** Page not found."));

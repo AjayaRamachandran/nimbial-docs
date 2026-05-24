@@ -1,5 +1,3 @@
-> This page was last updated for Symphony v1.0.2. We'll roll out an update soon.
-
 # Create Projects
 
 Here is a step-by-step walkthrough of how to create a project folder and a Symphony file inside of the Symphony Project Manager.
@@ -20,7 +18,7 @@ Project folders in Symphony are just pointers to folders **on your computer**. A
 
 ![New Project Modal](/assets/folder-modal.png)
 
-> Note: currently, as of Symphony v1.0.2, on macOS computers you can't create a folder in the same popup that lets you choose what folder to link. We're looking into this.
+> Note: in Symphony v1.0.2, on macOS computers you can't create a folder in the same popup that lets you choose what folder to link. This has been patched in v1.1 and beyond. We recommend you upgrade for latest features.
 
 ### Naming your project
 Once you've selected the folder, Symphony will autofill the "Folder Alias" field with the folder name. This is what you'll see the folder referred to as within Symphony, and changing it does not affect the actual folder's name.
@@ -30,11 +28,11 @@ Once you've selected the folder, Symphony will autofill the "Folder Alias" field
 ## Step 2: Create a new Symphony
 Now that we've created a Project folder, we can create Symphony files within it. To create a new Symphony file, press the "New Symphony" button near the top left of the folder you're viewing. You will be prompted with this window:
 
-![Symphony Modal](/assets/new-project.png)
+![Symphony Modal](/assets/new-symphony.png)
 
 ### Naming your Symphony
 The name you enter here is what your Symphony file will be named. This includes the *actual name* of the `.symphony` file on your computer. This means you can't use any non-standard characters in the name. You can always change this file name later, inside or outside of Symphony.
 
 **When you're done, press Create.**
 
-> Note: currently, as of Symphony v1.0.2, the process of creating a new Symphony (after pressing 'Create') can take several seconds on some computers. We've identified the source of the issue and will be rolling out a fix in version 1.1. You can read more about that [here.](https://blog.nimbial.com/pages/whats_coming_in_symphony_1_1)
+> Note: in Symphony v1.0.2, the process of creating a new Symphony (after pressing 'Create') can take several seconds on some computers. We've identified the source of the issue and have fixed it in v1.1, which is now available. You can read more about that [here.](https://blog.nimbial.com/pages/whats_coming_in_symphony_1_1)

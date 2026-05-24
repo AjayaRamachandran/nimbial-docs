@@ -1,8 +1,6 @@
-> This page was last updated for Symphony v1.0.2. We'll roll out an update soon.
+# "File is damaged" error on MacOS
 
-# Get Symphony for macOS
-
-## Step 1 - Download
+<!-- ## Step 1 - Download
 Go to [symphony.nimbial.com](https://symphony.nimbial.com) and navigate to the **Download** tab.
 
 Press **"Download Symphony for macOS 11+"**
@@ -18,9 +16,9 @@ Once the file has finished downloading, unzip the file, preferably in a temporar
 ## Step 2 - Install
 Double-click **Symphony-0.0.0-arm64.dmg**. You should be prompted with a momentary setup wizard. If there are any instructions, follow them, then close the installer. (This should usually involve dragging the Symphony icon into the Applications folder)
 
-Symphony is now installed. You can find it as an app via **Spotlight** or in your App Launcher.
+Symphony is now installed. You can find it as an app via **Spotlight** or in your App Launcher. -->
 
-## Troubleshooting: "File is damaged"
+<!-- ## Troubleshooting: "File is damaged" -->
 On some mac computers, you may get a dialog box like the one below:
 
 ![file is damaged photo](/assets/macos-file-is-damaged.png)
