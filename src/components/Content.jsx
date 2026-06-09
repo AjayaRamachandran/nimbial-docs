@@ -8,7 +8,7 @@ import Outline from "./Outline.jsx";
 const pages = {
   symphony: [
     {
-      "Downloading Symphony": [
+      "Troubleshooting": [
         // { "Download on Windows": 1 },
         { "MacOS: File is Damaged": 2 },
       ],
